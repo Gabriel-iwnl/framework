@@ -1,11 +1,11 @@
-{% extends "base.html" %}
+{% extends "base.html" %}   <!-- herdando parte do template base.html -->
 
-{% block conteudo %}
+{% block conteudo %}    <!-- a tag block indica qual trecho que ele vai usar pra fazer a substituição -->
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{nome_pagina}}</h1>
 
-        <a href="{% url 'registrar_visitante' %}" class="btn btn-primary btn-icon-split btn-sm">
+        <a href="{% url 'registrar_visitante' %}" class="btn btn-primary btn-icon-split btn-sm"> <!-- passamos a URL registrar visitante pro botão Registrar Visitante -->
             <span class="text">Registrar visitante</span>
             
             <span class="icon text-white-50">
@@ -29,7 +29,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Visitantes aguardando autorização</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ visitantes_aguardando }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ visitantes_aguardando }}</div> <!-- visitantes_aguardando é o retorno dos filtros do dashboard views -->
                         </div>
                         
                         <div class="col-auto">
@@ -46,7 +46,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Visitantes no condomínio</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ visitantes_em_visita }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ visitantes_em_visita }}</div> <!-- visitantes_em_visita é o retorno dos filtros do dashboard views -->
                         </div>
                         
                         <div class="col-auto">
@@ -63,7 +63,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Visitas finalizadas</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ visitantes_finalizado }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ visitantes_finalizado }}</div> <!-- visitantes_finalizado é o retorno dos filtros do dashboard views -->
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user-check fa-2x text-gray-300"></i>
@@ -79,7 +79,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Visitantes registrados no mês atual</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ visitantes_mes }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ visitantes_mes }}</div> <!-- visitantes_mes é o retorno dos filtros do dashboard views -->
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -92,7 +92,7 @@
     
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-sm-flex align-items-center justify-content-between mb-4">
-            <h6 class="m-0 font-weight-bold text-primary">Visitantes recentes</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Visitantes recentes</h6>  <!-- visitante recentes é o retorno dos filtros do dashboard views -->
         </div>
 
         <div class="card-body">
@@ -109,7 +109,7 @@
                     </thead>
 
                     <tbody>
-                        {% for visitante in todos_visitantes %}
+                        {% for visitante in todos_visitantes %}   <!-- loop de interacao que lista todos os visitantes no dashboard -->
                             <tr>
                                 <td>{{ visitante.nome_completo }}</td>
                                 <td>{{ visitante.get_cpf }}</td>
@@ -118,9 +118,9 @@
                                 <td>{{ visitante.get_horario_autorizacao }}</td>
                                 <td>{{ visitante.get_morador_responsavel }}</td>
                                 <td>
-                                    <a href="{% url 'informacoes_visitante' id=visitante.id %}">
-                                        Ver informações
-                                    </a>
+                                    <a href="{% url 'informacoes_visitante' id=visitante.id %}"> <!-- aqui a gente renderiza uma URL diferente para cada visitante de forma automatica -->
+                                        Ver informações                                          <!-- a tag url do Django renderiza as urls de forma automatica, basta passar o nome da url -->   
+                                    </a>                                                        
                                 </td>
                             </tr>
                         {% endfor %}

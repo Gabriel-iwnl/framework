@@ -1,11 +1,11 @@
 from django.db import models
 
-class Porteiro(models.Model):
+class Porteiro(models.Model): #models.Model representa um modelo padrão do Django já com funcionalidades de interação com o banco de dados
 
-    usuario = models.OneToOneField(
+    usuario = models.OneToOneField(  # 1 usuário para 1 porteiro e vice versa
         "usuarios.Usuario",
         verbose_name="Usuário",
-        on_delete=models.PROTECT
+        on_delete=models.PROTECT   #protegemos esse tipo de usuário, apenas admins tem o poder de excluir
     )
 
     nome_completo = models.CharField(
@@ -32,7 +32,7 @@ class Porteiro(models.Model):
     class Meta:
         verbose_name = "Porteiro"
         verbose_name_plural = "Porteiros"
-        db_table = "porteiro"
+        db_table = "porteiro"              #Nessa linha definimos o nome da tabela que o Django vai criar pra armazenar nossos porteiros
 
     def __str__(self):
-        return self.nome_completo
+        return self.nome_completo           #Aqui a gente transforma a instância do objeto em string e retorna, a fins de exibição

@@ -30,7 +30,7 @@
                 <hr class="sidebar-divider my-0">
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'index' %}">
+                    <a class="nav-link" href="{% url 'index' %}"> <!-- Passamos a url index pro botão de retornar ao inicio da página -->
                         <i class="fas fa-home"></i>
                         <span>Início</span>
                     </a>
@@ -64,7 +64,7 @@
                         </ul>
                     </nav>
 
-                    {% block conteudo %}  {% endblock conteudo %}
+                    {% block conteudo %}  {% endblock conteudo %} <!-- reutilizando o bloco do index -->
 
                     <footer class="sticky-footer bg-white">
                         <div class="container my-auto">
@@ -91,7 +91,7 @@
                         
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                            <a class="btn btn-primary" href="{% url 'logout' %}">Sair</a>
+                            <a class="btn btn-primary" href="{% url 'logout' %}">Sair</a> <!-- Botão de logout do sistema -->
                         </div>
                     </div>
                 </div>

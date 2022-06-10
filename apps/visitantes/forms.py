@@ -1,14 +1,14 @@
-from django import forms
+from django import forms                       #Da mesma forma que uma classe model é mapeada pros campos do banco de dados, os campos forms são mapeados para elementos HTML
 from visitantes.models import Visitante
 
-class VisitanteForm(forms.ModelForm):
+class VisitanteForm(forms.ModelForm):    #Essa classe é responsável em criar um formulário para resgistro de visitantes
     class Meta:
         model = Visitante
         fields = [
-            "nome_completo", "cpf", "data_nascimento",
+            "nome_completo", "cpf", "data_nascimento",      #Lista dos campos que a gente quer exibir
             "numero_casa", "placa_veiculo"
         ]
-        error_messages = {
+        error_messages = {                      #Dicionário de mensagens de possíveis erros no formulário
             "nome_completo": {
                 "required": "O nome completo do visitante é obrigatório"
             },
@@ -25,12 +25,12 @@ class VisitanteForm(forms.ModelForm):
         }
 
 class AutorizaVisitanteForm(forms.ModelForm):
-    morador_responsavel = forms.CharField(required=True)
+    morador_responsavel = forms.CharField(required=True)  #Aqui a gente obriga o formulário a ter um morador responsável
 
     class Meta:
         model = Visitante
         fields = [ 
-            "morador_responsavel"
+            "morador_responsavel"       #Para autorizar um visitante, nesse momento, já temos os outros dados do próprio, agora precisamos do morador responsável
         ]
         error_messages = {
             "morador_responsavel": {

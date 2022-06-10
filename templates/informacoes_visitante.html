@@ -8,7 +8,7 @@
         <h1 class="h3 mb-0 text-gray-800">{{ nome_pagina }}</h1>
 
         <div> 
-            {% if visitante.status == "AGUARDANDO" %}
+            {% if visitante.status == "AGUARDANDO" %} <!-- se o status do visitante estiver AGUARDANDO, o modal Autorizar entrada está apto a aparecer na tela -->
                 <a href="#" class="btn btn-success btn-icon-split btn-sm" data-toggle="modal" data-target="#modal1">    
                     <span class="text">Autorizar entrada</span>
 
@@ -19,7 +19,7 @@
 
             {% endif %}
 
-            {% if visitante.status == "EM_VISITA" %}
+            {% if visitante.status == "EM_VISITA" %} <!-- se o status do visitante estiver EM_VISITA, o modal Finalizar visita entrada está apto a aparecer na tela -->
                 <a href="#" class="btn btn-warning btn-icon-split btn-sm" data-toggle="modal" data-target="#modal2">    
                     <span class="text">Finalizar visita</span>
 
@@ -39,11 +39,11 @@
                 Informações gerais
             </h4>
         
-            <form>
+            <form>               <!-- Aqui mostra todas as informações das visitas no Dashboard -->
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label>Horário de chegada</label>
-                        <input type="text" class="form-control" value="{{ visitante.horario_chegada }}" disabled>
+                        <input type="text" class="form-control" value="{{ visitante.horario_chegada }}" disabled>   
                     </div>
 
                     <div class="form-group col-md-4">
@@ -107,12 +107,12 @@
                     
             <p class="mr-2 mt-3 mb-4 text-right">
                 <small>
-                    Visitante registrado em {{ visitante.horario_chegada }} por {{ visitante.registrado_por }}
+                    Visitante registrado em {{ visitante.horario_chegada }} por {{ visitante.registrado_por }}  <!-- Registrando visita e porteiro responsável -->
                 </small>
             </p>
         
             <div class="mr-1 text-right">
-                <a href="{% url 'index' %}" class="btn btn-secondary text-white" type="button">
+                <a href="{% url 'index' %}" class="btn btn-secondary text-white" type="button"> <!-- botão Voltar que redireciona para página inicial -->
                     <span class="text">Voltar</span>
                 </a>
             </div>
@@ -132,7 +132,7 @@
                 
                 <div class="modal-body">
                     <form method="post">
-                        {% csrf_token %}
+                        {% csrf_token %}  <!-- Proteção para nossa aplicação, de modo que vai impedir sites de enviar requisições estranhas para nossa aplicação -->
     
                         <div class="form-group">
                             <label for="id_morador_responsavel" class="col-form-label">Nome do morador responsável por autorizar a entrada do visitante:</label>
@@ -167,7 +167,7 @@
                         </h5>
     
                         <form method="post" action="{% url 'finalizar_visita' id=visitante.id %}">
-                            {% csrf_token %}
+                            {% csrf_token %}  <!-- Proteção para nossa aplicação, de modo que vai impedir sites de enviar requisições estranhas para nossa aplicação -->
     
                             <input hidden>
     

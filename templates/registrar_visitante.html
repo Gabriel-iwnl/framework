@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
-{% load widget_tweaks %}
+{% load widget_tweaks %}  <!-- pacote Widget é um pacote da comunidade que possui diversas funcionalidades de estilização de formulário, por exemplo: render_field -->
 
-{% block conteudo %}
+{% block conteudo %} <!-- reutilizando o bloco do index, mas aqui a gente define o qual conteudo queremos mostrar -->
 <div class="container">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{ nome_pagina }}</h1>
@@ -20,7 +20,7 @@
                 </small>
             </p>
 
-            {% if form.errors %}
+            {% if form.errors %}            <!-- verifica se contém erros nos campos do formulário -->
                 {% for field in form %}
                     {%if field.erros %}
                         {%for erro in field.erros %}
@@ -34,23 +34,23 @@
 
             <form method="post">
                 <div class="form-row">
-                    {% csrf_token %}
+                    {% csrf_token %} <!-- Proteção para nossa aplicação, de modo que vai impedir sites de enviar requisições estranhas para nossa aplicação -->
 
-                    {% for field in form %}
+                    {% for field in form %} <!-- Nosso formulário -->
                         <div class ="form-group col-md-12">
-                            <label>{{ field.label }} {% if field.field.required %} * {% endif %}</label>
-                            {% render_field field placeholder=field.label class="form-control" %}
+                            <label>{{ field.label }} {% if field.field.required %} * {% endif %}</label> <!-- aqui a gente mostra o * para campos obrigatórios -->
+                            {% render_field field placeholder=field.label class="form-control" %} <!-- render field faz o trabalho de renderização dos campos -->
                         </div>
                     {% endfor %}
                 </div>
 
                 <div class="text-right">
-                    <a href="{% url 'index' %}" class="btn btn-secondary text-white" type="button">
-                        <span class="text">Cancelar</span>
+                    <a href="{% url 'index' %}" class="btn btn-secondary text-white" type="button"> <!-- botão Cancelar que redireciona para página inicial -->
+                        <span class="text">Cancelar</span>          
                     </a>
 
                     <button class="btn btn-primary" type="submit">
-                        <span class="text">Registrar visitante</span>
+                        <span class="text">Registrar visitante</span>       <!-- Botão que será responsável por enviar nossa requisição pro servidor com os dados preenchidos -->
                     </button>
                 </div>
             </form>

@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 sys.path.append(
-    os.path.join(BASE_DIR, "apps")
+    os.path.join(BASE_DIR, "apps")      #Aqui a gente adicionou nosso apps em um pasta
 )
 
 # Application definition
@@ -47,7 +47,7 @@ INSTALLED_APPS += [
     'widget_tweaks',
 ]
 
-INSTALLED_APPS += [
+INSTALLED_APPS += [       
     'usuarios',
     'porteiros',
     'visitantes',
@@ -69,7 +69,7 @@ ROOT_URLCONF = 'controle_visitantes.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["templates"],
+        'DIRS': ["templates"],                             # Definimos a pasta que armazenamos os templates do site
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -95,7 +95,7 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = "usuarios.Usuario"
+AUTH_USER_MODEL = "usuarios.Usuario" #Estamos dizendo pro Django para usar essa classe ao invés da classe que ele trás por padrão
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -133,11 +133,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/'  #Endereco dos nossos arquivos statics (css e etc)
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, "static")      #Dessa forma a gente diz pro Django que os arquivos staticos devem ser procurados nessa pasta
 ]
 
-LOGIN_URL = "login"
+LOGIN_URL = "login"             #Aqui a gente ta definindo a url que vamos redirecionar usuarios que não estão autenticados e estão tentando acessar views que requerem autenticacao
 LOGIN_REDIRECT_URL = "index"
